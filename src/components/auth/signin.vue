@@ -20,6 +20,7 @@
                     <button type="submit">Submit</button>
                 </div>
             </form>
+            <div v-if="validateEmail">{{ validateEmail }}</div>
         </div>
     </div>
 </template>
@@ -33,6 +34,11 @@ export default {
             password: ''
         }
     },
+    computed: {
+        validateEmail() {
+            return !this.$store.getters.validateEmail ? false : this.$store.getters.validateEmail
+        }
+    },
     methods: {
         onSubmit () {
             const formData = {
@@ -41,6 +47,10 @@ export default {
             }
             console.log(formData)
             this.$store.dispatch('login', {email: formData.email, password: formData.password})
+            this.validateEmail
+        },
+        tesEvent() {
+            console.log('this event');
         }
     }
 }

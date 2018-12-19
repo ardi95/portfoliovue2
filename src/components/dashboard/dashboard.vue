@@ -10,7 +10,7 @@
 import axios from 'axios';
 
 export default {
-    computed: {
+    watch: {
         email() {
             return !this.$store.getters.user ? false : this.$store.getters.user.email
         }
